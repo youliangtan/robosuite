@@ -11,6 +11,7 @@ from .jaco_three_finger_gripper import JacoThreeFingerGripper, JacoThreeFingerDe
 from .robotiq_140_gripper import Robotiq140Gripper
 from .wiping_gripper import WipingGripper
 from .null_gripper import NullGripper
+from .birobot_hands import BiRobotLeftHand, BiRobotRightHand
 
 
 GRIPPER_MAPPING = {
@@ -23,6 +24,8 @@ GRIPPER_MAPPING = {
     "Robotiq140Gripper": Robotiq140Gripper,
     "RobotiqThreeFingerGripper": RobotiqThreeFingerGripper,
     "RobotiqThreeFingerDexterousGripper": RobotiqThreeFingerDexterousGripper,
+    "BiRobotLeftHand": BiRobotLeftHand,
+    "BiRobotRightHand": BiRobotRightHand,
     None: NullGripper,
 }
 
