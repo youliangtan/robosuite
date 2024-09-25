@@ -14,13 +14,13 @@ from robosuite.controllers import load_controller_config
 if __name__ == '__main__':
     # mimicgen abs pose (ik)
     # mink
-    # mimicgen OSC     
-
+    # mimicgen OSC
 
     controller_config = load_controller_config(default_controller="JOINT_TORQUE")
     # controller_config = load_controller_config(default_controller="JOINT_POSITION")
+    # controller_config = load_controller_config(default_controller="JOINT_VELOCITY")
     # controller_config = load_controller_config(default_controller="OSC_POSE")
-    #kp 
+    # kp 
     # controller_config["kp"] = 5
     print("Controller Configuration:", controller_config)
     # controller_config["control_delta"] = False
@@ -56,9 +56,7 @@ if __name__ == '__main__':
 
     action_dim = env.action_space.shape[0]
     action = np.zeros(action_dim)
-    # action[:3] = np.array([1., 1., 1.])
-
-
+    # action[:3] = np.array([1.0, 1.0, 1.0])
 
     import time
 

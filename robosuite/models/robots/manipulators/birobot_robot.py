@@ -50,7 +50,7 @@ class BiRobot(ManipulatorModel):
         Returns:
             dict: Dictionary containing arm-specific default controller config names (*filename)
         """
-        return {"right": "default_BiRobot", "left": "default_BiRobot"}
+        return {"right": "default_birobot", "left": "default_birobot"}
     
 
     @property
