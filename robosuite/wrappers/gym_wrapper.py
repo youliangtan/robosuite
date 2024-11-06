@@ -15,7 +15,7 @@ except ImportError:
     import gym
     from gym import spaces
 
-    if not gym.__version__ >= '0.26.0':
+    if not gym.__version__ >= "0.26.0":
         # Due to API Changes in gym>=0.26.0, we need to ensure that the version is correct
         # Please check: https://github.com/openai/gym/releases/tag/0.26.0
         raise ImportError("Please ensure version of gym>=0.26.0 to use the GymWrapper.")
@@ -81,6 +81,10 @@ class GymWrapper(Wrapper, gym.Env):
             low = -high
             self.observation_space = spaces.Box(low, high)
         else:
+<<<<<<< HEAD
+=======
+
+>>>>>>> fc550c02099ed58645314378eed91e65608a2f7e
             def get_box_space(sample):
                 """Util fn to obtain the space of a single numpy sample data"""
                 if np.issubdtype(sample.dtype, np.integer):
@@ -93,9 +97,13 @@ class GymWrapper(Wrapper, gym.Env):
                     raise ValueError()
                 return spaces.Box(low=low, high=high, shape=sample.shape, dtype=sample.dtype)
 
+<<<<<<< HEAD
             self.observation_space = spaces.Dict({
                 key: get_box_space(obs[key]) for key in self.keys
             })
+=======
+            self.observation_space = spaces.Dict({key: get_box_space(obs[key]) for key in self.keys})
+>>>>>>> fc550c02099ed58645314378eed91e65608a2f7e
 
         low, high = self.env.action_spec
         self.action_space = spaces.Box(low, high)
@@ -127,11 +135,17 @@ class GymWrapper(Wrapper, gym.Env):
 
     def reset(self, seed=None, options=None):
         """
-        Extends env reset method to return flattened observation instead of normal OrderedDict and optionally resets seed
+        Extends env reset method to return observation instead of normal OrderedDict and optionally resets seed
 
         Returns:
+<<<<<<< HEAD
             np.array: Flattened environment observation space after reset occurs
             dict: Info in GymAPI, default return empty dict
+=======
+            2-tuple:
+                - (np.array) observations from the environment
+                - (dict) an empty dictionary, as part of the standard return format
+>>>>>>> fc550c02099ed58645314378eed91e65608a2f7e
         """
         if seed is not None:
             if isinstance(seed, int):
@@ -144,7 +158,7 @@ class GymWrapper(Wrapper, gym.Env):
 
     def step(self, action):
         """
-        Extends vanilla step() function call to return flattened observation instead of normal OrderedDict.
+        Extends vanilla step() function call to return observation instead of normal OrderedDict.
 
         Args:
             action (np.array): Action to take in environment
@@ -152,7 +166,7 @@ class GymWrapper(Wrapper, gym.Env):
         Returns:
             4-tuple:
 
-                - (np.array) flattened observations from the environment
+                - (np.array) observations from the environment
                 - (float) reward from the environment
                 - (bool) episode ending after reaching an env terminal state
                 - (bool) episode ending after an externally defined condition
@@ -176,3 +190,9 @@ class GymWrapper(Wrapper, gym.Env):
         """
         # Dummy args used to mimic Wrapper interface
         return self.env.reward()
+
+    def close(self):
+        """
+        wrapper for calling underlying env close function
+        """
+        self.env.close()
